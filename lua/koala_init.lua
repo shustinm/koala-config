@@ -3,15 +3,15 @@ local M = {}
 
 -- bootstraps nvim plugins
 local function bootstrap(plugin_author, plugin_name, branch, env_path_override)
-	local path = vim.fn.stdpath('data') .. '/lazy/' .. plugin_name
+	local path = vim.fn.stdpath("data") .. "/lazy/" .. plugin_name
 	if not vim.loop.fs_stat(path) then
 		-- bootstrap lazy.nvim
 		vim.fn.system({
-			'git',
-			'clone',
-			'--filter=blob:none',
-			'https://github.com/' .. plugin_author .. '/' .. plugin_name .. '.git',
-			'--branch=' .. branch,
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"https://github.com/" .. plugin_author .. "/" .. plugin_name .. ".git",
+			"--branch=" .. branch,
 			path,
 		})
 	end
@@ -23,16 +23,16 @@ function M.load_koala(leader_key)
 	vim.g.maplocalleader = leader_key
 
 	-- Bootstrap KoalaVim
-	bootstrap('KoalaVim', 'KoalaVim', 'master', 'KOALA')
+	bootstrap("KoalaVim", "KoalaVim", "master", "KOALA")
 
-	require('KoalaVim').init()
+	require("KoalaVim").init()
 end
 
 function M.load_lazy(opts)
 	-- Bootstrap lazy.nvim
-	bootstrap('folke', 'lazy.nvim', 'stable', 'LAZY')
+	bootstrap("folke", "lazy.nvim", "stable", "LAZY")
 
-	local koala_spec = require('KoalaVim.spec')
+	local koala_spec = require("KoalaVim.spec")
 
 	local user_spec = opts.user_spec or {}
 
@@ -59,24 +59,24 @@ function M.load_lazy(opts)
 			rtp = {
 				-- disable some rtp plugins
 				disabled_plugins = {
-					'gzip',
-					'matchit',
-					'matchparen',
-					'netrwPlugin',
-					'tarPlugin',
-					'tohtml',
-					'tutor',
-					'zipPlugin',
+					"gzip",
+					"matchit",
+					"matchparen",
+					"netrwPlugin",
+					"tarPlugin",
+					"tohtml",
+					"tutor",
+					"zipPlugin",
 				},
 			},
 		},
 	}
 
-	local lazy_opts = vim.tbl_deep_extend('keep', opts.lazy_opts or {}, koala_lazy_opts)
+	local lazy_opts = vim.tbl_deep_extend("keep", opts.lazy_opts or {}, koala_lazy_opts)
 	-- Force combined spec
 	lazy_opts.spec = combined_spec
 
-	require('lazy').setup(lazy_opts)
+	require("lazy").setup(lazy_opts)
 end
 
 return M

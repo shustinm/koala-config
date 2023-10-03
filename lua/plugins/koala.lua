@@ -14,6 +14,13 @@ table.insert(M, {
 				jira_url = "https://vastdata.atlassian.net/browse",
 			},
 		},
+		lsp = {
+			format = {
+				-- type: string[]
+				-- List of lsp clients to not apply format with
+				blacklist = { "rust_analyzer" },
+			},
+		},
 	},
 })
 
