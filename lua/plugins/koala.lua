@@ -18,7 +18,7 @@ table.insert(M, {
 			format = {
 				-- type: string[]
 				-- List of lsp clients to not apply format with
-				blacklist = { "rust_analyzer" },
+				blacklist = { "rust_analyzer", "ruff_lsp" },
 			},
 		},
 	},
