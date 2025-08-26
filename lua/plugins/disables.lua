@@ -13,4 +13,10 @@ table.insert(M, {
 	enabled = false,
 })
 
+-- Disable format-on-leave, WIP by AT (for 0.10)
+table.insert(M, {
+	'ofirgall/format-on-leave.nvim',
+	enabled = false,
+})
+
 return M
